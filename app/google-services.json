@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "32206320295",
+    "project_id": "fcsubway-ebcba",
+    "storage_bucket": "fcsubway-ebcba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32206320295:android:739c024f42731644656182",
+        "android_client_info": {
+          "package_name": "kst.app.fcsubwayinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32206320295-3ca53ofc5e3hk012sf83hmuau55skh51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5x5ukxlxRBJbRMsdiUv3HMUJopOsZiTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32206320295-3ca53ofc5e3hk012sf83hmuau55skh51.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
