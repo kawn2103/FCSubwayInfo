@@ -18,7 +18,6 @@ import kst.app.fcsubwayinfo.domain.ArrivalInformation
 import kst.app.fcsubwayinfo.domain.Station
 
 class StationRepositoryImpl(
-
     private val stationArrivalsApi: StationArrivalsApi,
     private val stationApi: StationApi,
     private val stationDao: StationDao,
