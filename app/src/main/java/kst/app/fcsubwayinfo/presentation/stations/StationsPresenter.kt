@@ -60,4 +60,10 @@ class StationsPresenter(
             }
             .launchIn(scope)
     }
+
+    override fun toggleStationFavorite(station: Station) {
+        scope.launch {
+            stationRepository.updateStation(station.copy(isFavorited = !station.isFavorited))
+        }
+    }
 }

@@ -3,12 +3,12 @@ package kst.app.fcsubwayinfo.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import kst.app.fcsubwayinfo.R
 import kst.app.fcsubwayinfo.databinding.ActivityMainBinding
 import kst.app.fcsubwayinfo.extension.toGone
 import kst.app.fcsubwayinfo.extension.toVisible
+import kst.app.fcsubwayinfo.presentation.stationarrivals.StationArrivalsFragmentArgs
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,8 +35,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindViews() {
-        navigationController.addOnDestinationChangedListener { _, destination, _ ->
+        navigationController.addOnDestinationChangedListener { _, destination, argument ->
             if (destination.id == R.id.station_arrivals_dest) {
+                title = StationArrivalsFragmentArgs.fromBundle(argument!!).station.name
                 binding.toolbar.toVisible()
             } else {
                 binding.toolbar.toGone()

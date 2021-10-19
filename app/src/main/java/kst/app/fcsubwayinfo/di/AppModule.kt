@@ -14,6 +14,9 @@ import kst.app.fcsubwayinfo.data.preference.PreferenceManager
 import kst.app.fcsubwayinfo.data.preference.SharedPreferenceManager
 import kst.app.fcsubwayinfo.data.repository.StationRepository
 import kst.app.fcsubwayinfo.data.repository.StationRepositoryImpl
+import kst.app.fcsubwayinfo.presentation.stationarrivals.StationArrivalsContract
+import kst.app.fcsubwayinfo.presentation.stationarrivals.StationArrivalsFragment
+import kst.app.fcsubwayinfo.presentation.stationarrivals.StationArrivalsPresenter
 import kst.app.fcsubwayinfo.presentation.stations.StationsContract
 import kst.app.fcsubwayinfo.presentation.stations.StationsFragment
 import kst.app.fcsubwayinfo.presentation.stations.StationsPresenter
@@ -70,5 +73,9 @@ val appModule = module {
     // Presentation
     scope<StationsFragment> {
         scoped<StationsContract.Presenter> { StationsPresenter(getSource(), get()) }
+    }
+
+    scope<StationArrivalsFragment> {
+        scoped<StationArrivalsContract.Presenter> { StationArrivalsPresenter(getSource(), get(), get()) }
     }
 }

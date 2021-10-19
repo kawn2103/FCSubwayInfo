@@ -21,6 +21,10 @@
         android:name="kst.app.fcsubwayinfo.presentation.stationarrivals.StationArrivalsFragment"
         tools:layout="@layout/fragment_station_arrivals">
 
+        <argument
+            android:name="station"
+            app:argType="kst.app.fcsubwayinfo.domain.Station"/>
+
     </fragment>
 
 </navigation>
