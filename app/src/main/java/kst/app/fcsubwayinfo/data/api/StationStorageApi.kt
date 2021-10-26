@@ -21,7 +21,9 @@ class StationStorageApi(
         return byteArray.decodeToString()
             .lines()
             .drop(1)
-            .map { it.split(",") }
+            .map {
+                it.split(",")   //it은 받아온 데이터터
+            }
             .map { StationEntity(it[1]) to SubwayEntity(it[0].toInt()) }
     }
 

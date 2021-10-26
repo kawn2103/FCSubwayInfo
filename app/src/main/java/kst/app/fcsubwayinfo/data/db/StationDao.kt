@@ -10,8 +10,9 @@ import kst.app.fcsubwayinfo.data.db.entity.SubwayEntity
 @Dao
 interface StationDao {
 
-    @Transaction
+    @Transaction    //쿼리일때만 사용함
     @Query("SELECT * FROM StationEntity")
+    //Flow -> 옵저버블 데이터 타입 (라이브 데이터와 유사)
     fun getStationWithSubways(): Flow<List<StationWithSubwaysEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

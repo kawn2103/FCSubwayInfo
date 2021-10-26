@@ -31,46 +31,57 @@ import retrofit2.create
 
 val appModule = module {
 
+    // 코루틴 스코트 싱글턴 생성
     single { Dispatchers.IO }
 
-    // Database
+    // Database 싱글턴 생성
     single { AppDatabase.build(androidApplication()) }
     single { get<AppDatabase>().stationDao() }
 
-    // Preference
+    // Preference 싱글턴 생성
     single { androidContext().getSharedPreferences("preference", Activity.MODE_PRIVATE) }
     single<PreferenceManager> { SharedPreferenceManager(get()) }
 
 
-    // Api
+    // Api 싱글턴 생성
     single {
         OkHttpClient()
-            .newBuilder()
-            .addInterceptor(
-                HttpLoggingInterceptor().apply {
-                    level = if (BuildConfig.DEBUG) {
-                        HttpLoggingInterceptor.Level.BODY
-                    } else {
-                        HttpLoggingInterceptor.Level.NONE
-                    }
-                }
-            )
-            .build()
+                .newBuilder()
+                .addInterceptor(
+                        HttpLoggingInterceptor().apply {
+                            level = if (BuildConfig.DEBUG) {
+                                HttpLoggingInterceptor.Level.BODY
+                            } else {
+                                HttpLoggingInterceptor.Level.NONE
+                            }
+                        }
+                )
+                .build()
     }
+
     single<StationArrivalsApi> {
         Retrofit.Builder().baseUrl(Url.SEOUL_DATA_API_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(get())
-            .build()
-            .create()
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(get())
+                .build()
+                .create()
     }
+
 
     single<StationApi> { StationStorageApi(Firebase.storage) }
 
-    // Repository
-    single<StationRepository> { StationRepositoryImpl(get(), get(), get(), get(),get()) }
+    // Repository 싱글턴 생성
+    single<StationRepository> { StationRepositoryImpl(get(), get(), get(), get(), get()) }
 
-    // Presentation
+    // Presentation scope 생성
+    /***********************************************************************************************
+    getSource() -  프로젝스 소스코드에서 알맞은 객체를 가져와서 세팅
+    get() - 모듈안에 선언되어 있는것 중 알맞은 객체를 가져와서 세팅함
+
+    scope<적용될 scope 위치(fragment 혹은 Activity 등)>{
+        scoped<implement로 받아오는 인터페이스의 타입> { 실제로 주입할 클래스(getSource(), get()) }
+    }
+    ***********************************************************************************************/
     scope<StationsFragment> {
         scoped<StationsContract.Presenter> { StationsPresenter(getSource(), get()) }
     }
